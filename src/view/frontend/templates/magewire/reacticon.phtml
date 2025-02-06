@@ -22,7 +22,7 @@ $magewire = $block->getMagewire();
     >
         <button class="btn btn-primary bg-green-500 hover:bg-green-700 disabled:opacity-25"
                 wire:click="increment"
-                x-on:toggle-button.window="'increment' in $event.detail ? increment = $event.detail.increment"
+                x-on:toggle-button.window="`'increment' in $event.detail ? increment = $event.detail.increment`"
                 :disabled="!increment"
         >
             <span>&plus;<?= $magewire->getInterval() ?></span>
@@ -34,7 +34,7 @@ $magewire = $block->getMagewire();
 
         <button class="btn btn-primary bg-yellow-500 hover:bg-yellow-700 disabled:opacity-25"
                 wire:click="decrement"
-                x-on:toggle-button.window="'decrement' in $event.detail ? decrement = $event.detail.decrement"
+                x-on:toggle-button.window="`'decrement' in $event.detail ? decrement = $event.detail.decrement`"
                 :disabled="!decrement"
         >
             <span>&minus;<?= $magewire->getInterval() ?></span>
