@@ -1,5 +1,5 @@
 {
-  "name": "magewirephp/magewire-examples",
+  "name": "magennowirephp/magewire-examples",
   "description": "A Magento 2 module including all sorts of Magewire inspired examples",
   "type": "magento2-module",
   "require": {
