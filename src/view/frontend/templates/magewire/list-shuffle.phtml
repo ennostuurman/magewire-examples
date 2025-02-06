@@ -45,43 +45,43 @@ $magewire = $block->getMagewire();
     </div>
 
     <button wire:click="shuffle" class="btn btn-primary text-center float-right">Shuffle</button>
-</div>
-
-<script>
-    /**
-     * Check out this cool animation feature explanation at the official Livewire Screencasts page.
-     * @see https://laravel-livewire.com/screencasts/s8-animate-move
-     */
-
-    let animations
-
-    document.addEventListener('DOMContentLoaded', () => {
-        Magewire.hook('message.received', () => {
-            let things = Array.from(document.querySelectorAll('[animate-move]'))
-
-            animations = things.map(thing => {
-                let topO = thing.getBoundingClientRect().top
-
-                return () => {
-                    let topN = thing.getBoundingClientRect().top
-                    let calc = (topO - topN)
-
-                    thing.animate([
-                        {transform: 'translateY(' + calc + 'px)'},
-                        {transform: 'translateY(0px)'}
-                    ], {duration: 1000, easing: 'ease'})
+    
+    <script>
+        /**
+         * Check out this cool animation feature explanation at the official Livewire Screencasts page.
+         * @see https://laravel-livewire.com/screencasts/s8-animate-move
+         */
+    
+        let animations
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            Magewire.hook('message.received', () => {
+                let things = Array.from(document.querySelectorAll('[animate-move]'))
+    
+                animations = things.map(thing => {
+                    let topO = thing.getBoundingClientRect().top
+    
+                    return () => {
+                        let topN = thing.getBoundingClientRect().top
+                        let calc = (topO - topN)
+    
+                        thing.animate([
+                            {transform: 'translateY(' + calc + 'px)'},
+                            {transform: 'translateY(0px)'}
+                        ], {duration: 1000, easing: 'ease'})
+                    }
+                })
+    
+                things.forEach((thing => {
+                    thing.getAnimations().forEach(animations => animations.finish())
+                }))
+            })
+    
+            Magewire.hook('message.processed', () => {
+                while (animations.length) {
+                    animations.shift()()
                 }
             })
-
-            things.forEach((thing => {
-                thing.getAnimations().forEach(animations => animations.finish())
-            }))
         })
-
-        Magewire.hook('message.processed', () => {
-            while (animations.length) {
-                animations.shift()()
-            }
-        })
-    })
-</script>
+    </script>
+</div>
