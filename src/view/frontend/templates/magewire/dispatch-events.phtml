@@ -30,27 +30,26 @@ $magewire = $block->getMagewire();
     <button type="button" wire:click="process" class="btn btn-primary float-right">
         Toggle Process
     </button>
-</div>
-
-<script>
-    function dispatchEventsDialog() {
-        const self = this
-
-        window.addEventListener('process:after', event => {
-            self.visible = event.detail.show
-        })
-
-        return {
-            visible: false,
-            show() {
-                self.visible = true
-            },
-            hide() {
-                self.visible = false
-            },
-            isVisible() {
-                return self.visible
+    <script>
+        function dispatchEventsDialog() {
+            const self = this
+    
+            window.addEventListener('process:after', event => {
+                self.visible = event.detail.show
+            })
+    
+            return {
+                visible: false,
+                show() {
+                    self.visible = true
+                },
+                hide() {
+                    self.visible = false
+                },
+                isVisible() {
+                    return self.visible
+                }
             }
         }
-    }
-</script>
+    </script>
+</div>
